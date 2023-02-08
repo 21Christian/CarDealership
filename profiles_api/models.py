@@ -16,7 +16,7 @@ class UserProfileManager(BaseUserManager):
 
         email = self.normalize_email(email)
 
-        user = self.model(email=email, name=name)
+        user = self.model(email=email, name=name, )
 
         user.set_password(password)
         user.save(using=self._db)
@@ -37,18 +37,19 @@ class UserProfileManager(BaseUserManager):
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     gender_options = (
         ('M', 'Male'),
-        ('F', 'Female')
+        ('F', 'Female'),
+        ('O', 'Other'),
     )
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    lastname = models.CharField(max_length=255, default='unknown')
-    gender = models.CharField(max_length=1, choices=gender_options, default='Male')
+    lastname = models.CharField(max_length=255, default='')
+    gender = models.CharField(max_length=1, choices=gender_options, default='')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     objects = UserProfileManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name', 'lastname']
 
     def get_full_name(self):
         """Retrieve full name for user"""

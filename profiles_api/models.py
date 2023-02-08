@@ -35,9 +35,15 @@ class UserProfileManager(BaseUserManager):
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
+    gender_options = (
+        ('M', 'Male'),
+        ('F', 'Female')
+    )
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255, default='unknown')
+    gender = models.CharField(max_length=1, choices=gender_options, default='Male')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     objects = UserProfileManager()
@@ -69,14 +75,6 @@ class ProfileFeedItem(models.Model):
     def __str__(self):
         """Return the model as a string"""
         return self.status_text
-
-
-class Manufacturer(models.Model):
-    company = models.CharField(max_length=50)
-
-
-class Brand(models.Model):
-    brand_name = models.CharField(max_length=50)
 
 
 class Car(models.Model):

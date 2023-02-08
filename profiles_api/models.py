@@ -99,6 +99,7 @@ class Car(models.Model):
     engine_size = models.FloatField(default=0)
     fuel = models.CharField(max_length=1, choices=fuel_type)
     car_category = models.CharField(max_length=2, choices=car_category, default='')
+    horse_power = models.IntegerField(default=0)
     year = models.IntegerField(default=0)
     price = models.FloatField(default=0)
     quantity = models.FloatField(default=0)

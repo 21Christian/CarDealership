@@ -181,3 +181,5 @@ class InvoiceItemViewSet(viewsets.ModelViewSet):
         product.quantity -= serializer.validated_data.get('quantity')
         product.save()
         serializer.save(price=product.price)
+
+

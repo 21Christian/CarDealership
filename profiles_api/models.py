@@ -83,11 +83,21 @@ class Car(models.Model):
         ('G', 'Gasoline'),
         ('LPG', 'LPG')
     )
+    car_category = (
+        ('S', 'Sedan'),
+        ('H', 'Hatchback'),
+        ('C', 'Cabriolet'),
+        ('E', 'Estate'),
+        ('Sp', 'Sport'),
+        ('P', 'Pickup'),
+        ('M', 'Micro')
+    )
 
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     engine_size = models.FloatField(default=0)
     fuel = models.CharField(max_length=1, choices=fuel_type)
+    car_category = models.CharField(max_length=1, choices=car_category, default='Sedan')
     year = models.IntegerField(default=0)
     price = models.FloatField(default=0)
     quantity = models.FloatField(default=0)
@@ -110,13 +120,11 @@ class Invoice(models.Model):
 
 
 class InvoiceItem(models.Model):
-    # product = models.ForeignKey('profiles_api.ProfileFeedItem', on_delete=models.CASCADE)
     product = models.ForeignKey('profiles_api.Car', on_delete=models.CASCADE)
     invoice = models.ForeignKey('profiles_api.Invoice', on_delete=models.CASCADE)
     quantity = models.FloatField(default=0)
     price = models.FloatField(default=0)
 
-    # total = models.FloatField(default=0)
 
     @property
     def total(self):

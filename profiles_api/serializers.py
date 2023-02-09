@@ -48,7 +48,9 @@ class ProfileFeedItemSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Car
-        fields = ('id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'price', 'quantity')
+        fields = (
+            'id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'price',
+            'description', 'quantity')
 
     def validate(self, data):
         if data['quantity'] < 0:

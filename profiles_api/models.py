@@ -9,23 +9,23 @@ from django.db.models import Sum, F
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, lastname, password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
 
-        user = self.model(email=email, name=name, )
+        user = self.model(email=email, name=name, lastname=lastname)
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, name, password):
+    def create_superuser(self, email, name, lastname, password):
         """Create and save a new superuser with given details"""
-        user = self.create_user(email, name, password)
+        user = self.create_user(email, name, lastname, password)
 
         user.is_superuser = True
         user.is_staff = True
@@ -103,6 +103,7 @@ class Car(models.Model):
     horse_power = models.IntegerField(default=0)
     year = models.IntegerField(default=0)
     price = models.FloatField(default=0)
+    description = models.TextField(default='')
     quantity = models.FloatField(default=0)
 
 

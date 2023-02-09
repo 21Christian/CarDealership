@@ -94,6 +94,10 @@ class Car(models.Model):
         ('M', 'Micro'),
         ('Su', 'SUV'),
     )
+    condition_type = (
+        (1, 'New'),
+        (0, 'Used')
+    )
 
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
@@ -102,9 +106,55 @@ class Car(models.Model):
     car_category = models.CharField(max_length=2, choices=car_category, default='')
     horse_power = models.IntegerField(default=0)
     year = models.IntegerField(default=0)
+    condition = models.CharField(max_length=1, choices=condition_type, default='')
     price = models.FloatField(default=0)
     description = models.TextField(default='')
-    quantity = models.FloatField(default=0)
+    quantity = models.IntegerField(default=0)
+
+
+class Motorcycle(models.Model):
+    tire_num = (
+        ('2', 2),
+        ('3', 3),
+        ('4', 4),
+    )
+    cylinder_num = (
+        ('1', 1),
+        ('2', 2),
+        ('3', 3),
+        ('4', 4),
+        ('6', 6),
+    )
+    type_category = (
+        ('S', 'Scooter'),
+        ('Ch', 'Chopper'),
+        ('C', 'Cross'),
+        ('D', 'Dirt Bike'),
+        ('Sp', 'Sport'),
+        ('St', 'Street'),
+        ('E', 'Enduro'),
+        ('Tu', 'Touring'),
+        ('Tr', '3 Wheeler'),
+        ('Fr', '4 Wheeler')
+    )
+    condition_type = (
+        (1, 'New'),
+        (0, 'Used')
+    )
+
+    brand = models.CharField(max_length=50)
+    model = models.CharField(max_length=50)
+    engine_size = models.FloatField(default=0)
+    number_of_cylinders = models.CharField(max_length=1, choices=cylinder_num, default='')
+    horse_power = models.IntegerField(default=0)
+    motorcycle_category = models.CharField(max_length=2, choices=type_category, default='')
+    weight = models.IntegerField(default=0)
+    number_of_tires = models.CharField(max_length=1, choices=tire_num, default='')
+    year = models.IntegerField(default=0)
+    condition = models.CharField(max_length=1, choices=condition_type, default='')
+    price = models.FloatField(default=0)
+    description = models.TextField(default='', blank=True)
+    quantity = models.IntegerField(default=0)
 
 
 class Invoice(models.Model):

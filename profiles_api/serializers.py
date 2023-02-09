@@ -45,12 +45,25 @@ class ProfileFeedItemSerializer(serializers.ModelSerializer):
         extra_kwargs = {'user_profile': {'read_only': True}}
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Car
         fields = (
-            'id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'price',
+            'id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'condition', 'price',
             'description', 'quantity')
+
+    def validate(self, data):
+        if data['quantity'] < 0:
+            raise serializers.ValidationError("Product quantity can't be negative")
+        return data
+
+
+class MotorcycleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Motorcycle
+        fields = (
+            'id', 'brand', 'model', 'engine_size', 'number_of_cylinders', 'horse_power', 'fuel', 'motorcycle_category',
+            'weight', 'number_of_tires', 'year', 'condition', 'price', 'description', 'quantity')
 
     def validate(self, data):
         if data['quantity'] < 0:

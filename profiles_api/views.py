@@ -145,10 +145,16 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
         serializer.save(user_profile=self.request.user)
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class CarViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.ProductSerializer
+    serializer_class = serializers.CarSerializer
     queryset = models.Car.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+class MotorcycleViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    serializer_class = serializers.MotorcycleSerializer
+    queryset = models.Motorcycle.objects.all()
     permission_classes = (IsAuthenticated,)
 
 

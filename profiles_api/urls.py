@@ -4,9 +4,10 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
+router.register('motorcycle', views.CarViewSet)
+router.register('product', views.MotorcycleViewSet)
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
-router.register('profile', views.UserProfileViewSet)
-router.register('product', views.ProductViewSet)
+router.register('car', views.UserProfileViewSet)
 router.register('invoice', views.InvoiceViewSet)
 router.register('invoice_item', views.InvoiceItemViewSet)
 

@@ -5,7 +5,6 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('motorcycle', views.CarViewSet)
-router.register('product', views.MotorcycleViewSet)
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
 router.register('car', views.UserProfileViewSet)
 router.register('invoice', views.InvoiceViewSet)

@@ -151,12 +151,6 @@ class CarViewSet(viewsets.ModelViewSet):
     queryset = models.Car.objects.all()
     permission_classes = (IsAuthenticated,)
 
-class MotorcycleViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    serializer_class = serializers.MotorcycleSerializer
-    queryset = models.Motorcycle.objects.all()
-    permission_classes = (IsAuthenticated,)
-
 
 class InvoiceViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)

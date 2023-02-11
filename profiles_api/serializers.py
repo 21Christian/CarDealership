@@ -49,15 +49,14 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Car
         fields = (
-            'id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'condition', 'price',
+            'id', 'brand', 'model', 'engine_size', 'fuel', 'car_category', 'horse_power', 'year', 'condition',
+            'mileage', 'price',
             'description', 'quantity')
 
     def validate(self, data):
         if data['quantity'] < 0:
             raise serializers.ValidationError("Product quantity can't be negative")
         return data
-
-
 
 
 class InvoiceSerializer(serializers.ModelSerializer):

@@ -107,6 +107,7 @@ class Car(models.Model):
     horse_power = models.IntegerField(default=0)
     year = models.IntegerField(default=0)
     condition = models.CharField(max_length=1, choices=condition_type, default='')
+    mileage = models.IntegerField(default=0)
     price = models.FloatField(default=0)
     description = models.TextField(default='')
     quantity = models.IntegerField(default=0)

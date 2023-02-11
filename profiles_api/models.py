@@ -95,8 +95,8 @@ class Car(models.Model):
         ('Su', 'SUV'),
     )
     condition_type = (
-        (1, 'New'),
-        (0, 'Used')
+        ('New', 'New'),
+        ('Used', 'Used')
     )
 
     brand = models.CharField(max_length=50)
@@ -106,10 +106,10 @@ class Car(models.Model):
     car_category = models.CharField(max_length=2, choices=car_category, default='')
     horse_power = models.IntegerField(default=0)
     year = models.IntegerField(default=0)
-    condition = models.CharField(max_length=1, choices=condition_type, default='')
+    condition = models.CharField(max_length=4, choices=condition_type, default='')
     mileage = models.IntegerField(default=0)
     price = models.FloatField(default=0)
-    description = models.TextField(default='')
+    description = models.TextField(default='', blank=True)
     quantity = models.IntegerField(default=0)
 
 
